@@ -1,7 +1,9 @@
 import { SecretWordService, SecretNumberService } from './../services/SecretMessageService';
-import { Controller, Get, PathParams } from "@tsed/common";
+import { Controller, Get, PathParams, UseBefore } from "@tsed/common";
+import { AuthMiddleware } from '../middlewares/authMiddleware';
 
 @Controller("/secretMessage")
+@UseBefore(AuthMiddleware)
 export class SecretMessageController {
   constructor(
     private readonly secretWordService: SecretWordService,
