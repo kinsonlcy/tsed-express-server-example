@@ -1,5 +1,6 @@
 import "@tsed/platform-express"; // /!\ keep this import
 import "@tsed/ajv";
+import "@tsed/swagger";
 
 import * as bodyParser from "body-parser";
 import * as compress from "compression";
@@ -26,8 +27,14 @@ export const rootDir = __dirname;
   },
   exclude: [
     "**/*.spec.ts"
+  ],
+  swagger: [
+    {
+      path: "/docs"
+    }
   ]
 })
+
 export class Server {
   @Inject()
   app: PlatformApplication;
