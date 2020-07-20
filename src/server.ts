@@ -1,22 +1,26 @@
-import {Configuration, Inject} from "@tsed/di";
-import {PlatformApplication} from "@tsed/common";
 import "@tsed/platform-express"; // /!\ keep this import
-import {GlobalAcceptMimesMiddleware} from "@tsed/platform-express";
+import "@tsed/ajv";
+
 import * as bodyParser from "body-parser";
 import * as compress from "compression";
 import * as cookieParser from "cookie-parser";
-import * as methodOverride from "method-override";
 import * as cors from "cors";
-import "@tsed/ajv";
+import * as methodOverride from "method-override";
+
+import { Configuration, Inject } from "@tsed/di";
+
+import { GlobalAcceptMimesMiddleware } from "@tsed/platform-express";
+import { PlatformApplication } from "@tsed/common";
+
 export const rootDir = __dirname;
 
 @Configuration({
   rootDir,
   acceptMimes: ["application/json"],
-  httpPort: process.env.PORT || 8083,
+  httpPort: process.env.PORT || 3000,
   httpsPort: false, // CHANGE
   mount: {
-    "/rest": [
+    "/api": [
       `${rootDir}/controllers/**/*.ts`
     ]
   },
